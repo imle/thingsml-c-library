@@ -46,7 +46,7 @@ class SenMLRecord : public SenMLBase {
      *             predefined names, supported by the KPN network can be found in senml_enums.h
      */
     SenMLRecord(const char *name)
-        : _index(THINGSML_NO_INDEX), _name(name), _unit(SENML_UNIT_NONE), _time(NAN), _updateTime(0){};
+        : _index(THINGSML_NO_INDEX), _unit(SENML_UNIT_NONE), _time(NAN), _updateTime(0), _name(name){};
 
     SenMLRecord(ThingsMLMeasurementIndex index) : _index(index), _unit(SENML_UNIT_NONE), _time(NAN), _updateTime(0){};
     /**
@@ -57,7 +57,7 @@ class SenMLRecord : public SenMLBase {
      *             supported unit types.
      */
     SenMLRecord(const char *name, SenMLUnit unit)
-        : _index(THINGSML_NO_INDEX), _name(name), _unit(unit), _time(NAN), _updateTime(0){};
+        : _index(THINGSML_NO_INDEX), _unit(unit), _time(NAN), _updateTime(0), _name(name){};
 
     /**
      * returns the time assigned to this record. NaN represents 'no time assigned'.
@@ -201,11 +201,11 @@ class SenMLRecord : public SenMLBase {
     int getFieldLength();
 
   private:
+    ThingsMLMeasurementIndex _index;
+    SenMLUnit _unit;
     double _time;
     int _updateTime;
     const char *_name = NULL;
-    ThingsMLMeasurementIndex _index;
-    SenMLUnit _unit;
 };
 
 #endif // SENMLRECORD
