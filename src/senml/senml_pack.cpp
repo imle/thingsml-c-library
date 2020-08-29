@@ -103,7 +103,7 @@ int SenMLPack::fieldsToCbor() {
     }
     if (this->_bu) {
         res += cbor_serialize_int(SENML_CBOR_BU_LABEL);
-#ifdef ARDUINO
+#if defined(ARDUINO) && !defined(ARDUINO_ARCH_SAMD)
         strcpy_P(pgmBuff, (char *)pgm_read_word(&(senml_units_names[this->_bu])));
         res += cbor_serialize_unicode_string(pgmBuff);
 #else
