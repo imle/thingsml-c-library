@@ -122,7 +122,7 @@ int printUnit(SenMLUnit unit) {
     if (unit == SENML_UNIT_NONE) {
         return 0;
     }
-#ifdef ARDUINO
+#if defined(ARDUINO) && !defined(ARDUINO_ARCH_SAMD)
     strcpy_P(pgmBuff, (char *)pgm_read_word(&(senml_units_names[unit])));
     return printText(pgmBuff, strlen(pgmBuff));
 #else
