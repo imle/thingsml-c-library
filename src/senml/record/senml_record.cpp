@@ -162,7 +162,7 @@ int SenMLRecord::fieldsToCbor() {
     }
     if (this->_unit != SENML_UNIT_NONE) {
         res += cbor_serialize_int(SENML_CBOR_U_LABEL);
-#ifdef ARDUINO
+#if defined(ARDUINO) && !defined(ARDUINO_ARCH_SAMD)
         // char pgmBuff[9] = {0};
         strcpy_P(pgmBuff, (char *)pgm_read_word(&(senml_units_names[this->_unit])));
         res += cbor_serialize_unicode_string(pgmBuff);
